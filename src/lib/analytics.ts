@@ -250,7 +250,7 @@ function rng(seed: number) {
 
 export function makeDemoDataset(n = 1500): Dataset {
   const r = rng(42);
-  const pick = <T,>(a: T[]) => a[Math.floor(r() * a.length)];
+  const pick = <T,>(a: T[]): T => a[Math.floor(r() * a.length)]!;
   const jobs = ["admin.", "technician", "services", "management", "retired", "blue-collar", "student", "self-employed", "entrepreneur", "unemployed"];
   const rows: Row[] = [];
   for (let i = 0; i < n; i++) {
@@ -287,7 +287,7 @@ export function makeDemoDataset(n = 1500): Dataset {
     name: "Demo dataset (synthetic)",
     source: "demo",
     rows,
-    columns: Object.keys(rows[0]),
+    columns: Object.keys(rows[0]!),
     loadedAt: new Date().toISOString(),
     warnings: ["Synthetic sample generated in the browser for demonstration. Not real results."],
   };
