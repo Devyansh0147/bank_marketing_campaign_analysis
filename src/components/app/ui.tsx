@@ -91,19 +91,17 @@ function RateTooltip({ active, payload }: { active?: boolean; payload?: { payloa
 export function RateChart({ data, height = 260, horizontal, baseline }: { data: Group[]; height?: number; horizontal?: boolean; baseline?: number }) {
   return (
     <ResponsiveContainer width="100%" height={horizontal ? Math.max(height, data.length * 30 + 20) : height}>
-      <BarChart data={data} layout={horizontal ? "vertical" : "horizontal"} margin={{ left: horizontal ? 10 : -10, right: 12, top: 4 }}>
+      <BarChart data={data} layout={horizontal ? "vertical" : "horizontal"} margin={{ left: horizontal ? 10 : 0, right: 12, top: 4 }}>
         <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={!!horizontal} horizontal={!horizontal} />
-        {horizontal ? (
-          <>
-            <XAxis type="number" unit="%" tick={{ fontSize: 11, fill: "var(--muted-foreground)" }} axisLine={false} tickLine={false} />
-            <YAxis type="category" dataKey="key" width={100} tick={{ fontSize: 11, fill: "var(--muted-foreground)" }} axisLine={false} tickLine={false} />
-          </>
-        ) : (
-          <>
-            <XAxis dataKey="key" tick={{ fontSize: 11, fill: "var(--muted-foreground)" }} axisLine={false} tickLine={false} />
-            <YAxis unit="%" tick={{ fontSize: 11, fill: "var(--muted-foreground)" }} axisLine={false} tickLine={false} />
-          </>
-        )}
+        {horizontal
+          ? [
+              <XAxis key="x" type="number" unit="%" tick={{ fontSize: 11, fill: "var(--muted-foreground)" }} axisLine={false} tickLine={false} />,
+              <YAxis key="y" type="category" dataKey="key" width={100} tick={{ fontSize: 11, fill: "var(--muted-foreground)" }} axisLine={false} tickLine={false} />,
+            ]
+          : [
+              <XAxis key="x" dataKey="key" tick={{ fontSize: 11, fill: "var(--muted-foreground)" }} axisLine={false} tickLine={false} />,
+              <YAxis key="y" unit="%" tick={{ fontSize: 11, fill: "var(--muted-foreground)" }} axisLine={false} tickLine={false} />,
+            ]}
         <Tooltip content={<RateTooltip />} cursor={{ fill: "var(--muted)" }} />
         <Bar dataKey="rate" radius={horizontal ? [0, 4, 4, 0] : [4, 4, 0, 0]} maxBarSize={36}>
           {data.map((g) => (
