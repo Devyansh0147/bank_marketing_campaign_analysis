@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Analytics are computed client-side in src/lib/analytics.ts from the loaded dataset held in React context (src/lib/dataset-store.tsx); never hardcode metrics — every figure must derive from loaded data.
