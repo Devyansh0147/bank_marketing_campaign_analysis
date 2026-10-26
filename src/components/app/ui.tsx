@@ -78,7 +78,7 @@ export function Unsupported({ field }: { field: string }) {
 
 function RateTooltip({ active, payload }: { active?: boolean; payload?: { payload: Group }[] }) {
   if (!active || !payload?.length) return null;
-  const g = payload[0].payload;
+  const g = payload[0]!.payload;
   return (
     <div className="rounded-lg border bg-popover px-3 py-2 text-xs shadow-md">
       <div className="font-semibold">{g.key}</div>

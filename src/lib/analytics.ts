@@ -20,7 +20,7 @@ export function findTarget(columns: string[]): string | null {
   const lower = columns.map((c) => c.toLowerCase());
   for (const t of TARGET_CANDIDATES) {
     const i = lower.indexOf(t);
-    if (i >= 0) return columns[i];
+    if (i >= 0) return columns[i]!;
   }
   return null;
 }
@@ -206,8 +206,8 @@ export function insights(ds: Dataset): Insight[] {
     const valid = groups.filter((g) => g.total >= MIN_N);
     if (valid.length < 2) return;
     const s = [...valid].sort((a, b) => b.rate - a.rate);
-    const hi = s[0];
-    const lo = s[s.length - 1];
+    const hi = s[0]!;
+    const lo = s[s.length - 1]!;
     if (hi.rate - lo.rate < 2) return;
     out.push({
       title: `${label}: "${hi.key}" responds most`,
@@ -223,8 +223,8 @@ export function insights(ds: Dataset): Insight[] {
   compare("Month", monthGroups(ds));
   const cg = campaignGroups(ds);
   if (cg && cg.length >= 2) {
-    const first = cg[0];
-    const last = cg[cg.length - 1];
+    const first = cg[0]!;
+    const last = cg[cg.length - 1]!;
     if (first.total >= MIN_N && last.total >= MIN_N)
       out.push({
         title: "Contact frequency and response",
