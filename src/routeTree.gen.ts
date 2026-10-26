@@ -10,33 +10,91 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as CampaignsRouteImport } from './routes/campaigns'
+import { Route as ExplorerRouteImport } from './routes/explorer'
+import { Route as InsightsRouteImport } from './routes/insights'
+import { Route as SegmentsRouteImport } from './routes/segments'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CampaignsRoute = CampaignsRouteImport.update({
+  id: '/campaigns',
+  path: '/campaigns',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExplorerRoute = ExplorerRouteImport.update({
+  id: '/explorer',
+  path: '/explorer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsRoute = InsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SegmentsRoute = SegmentsRouteImport.update({
+  id: '/segments',
+  path: '/segments',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/campaigns': typeof CampaignsRoute
+  '/explorer': typeof ExplorerRoute
+  '/insights': typeof InsightsRoute
+  '/segments': typeof SegmentsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/campaigns': typeof CampaignsRoute
+  '/explorer': typeof ExplorerRoute
+  '/insights': typeof InsightsRoute
+  '/segments': typeof SegmentsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/campaigns': typeof CampaignsRoute
+  '/explorer': typeof ExplorerRoute
+  '/insights': typeof InsightsRoute
+  '/segments': typeof SegmentsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/about' | '/campaigns' | '/explorer' | '/insights' | '/segments'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/about' | '/campaigns' | '/explorer' | '/insights' | '/segments'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/campaigns'
+    | '/explorer'
+    | '/insights'
+    | '/segments'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  CampaignsRoute: typeof CampaignsRoute
+  ExplorerRoute: typeof ExplorerRoute
+  InsightsRoute: typeof InsightsRoute
+  SegmentsRoute: typeof SegmentsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +106,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/campaigns': {
+      id: '/campaigns'
+      path: '/campaigns'
+      fullPath: '/campaigns'
+      preLoaderRoute: typeof CampaignsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explorer': {
+      id: '/explorer'
+      path: '/explorer'
+      fullPath: '/explorer'
+      preLoaderRoute: typeof ExplorerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights': {
+      id: '/insights'
+      path: '/insights'
+      fullPath: '/insights'
+      preLoaderRoute: typeof InsightsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/segments': {
+      id: '/segments'
+      path: '/segments'
+      fullPath: '/segments'
+      preLoaderRoute: typeof SegmentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  CampaignsRoute: CampaignsRoute,
+  ExplorerRoute: ExplorerRoute,
+  InsightsRoute: InsightsRoute,
+  SegmentsRoute: SegmentsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
