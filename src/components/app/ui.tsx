@@ -92,22 +92,22 @@ export function RateChart({ data, height = 260, horizontal, baseline }: { data: 
   return (
     <ResponsiveContainer width="100%" height={horizontal ? Math.max(height, data.length * 30 + 20) : height}>
       <BarChart data={data} layout={horizontal ? "vertical" : "horizontal"} margin={{ left: horizontal ? 10 : -10, right: 12, top: 4 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" vertical={!!horizontal} horizontal={!horizontal} />
+        <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={!!horizontal} horizontal={!horizontal} />
         {horizontal ? (
           <>
-            <XAxis type="number" unit="%" tick={{ fontSize: 11, fill: "var(--color-muted-foreground)" }} axisLine={false} tickLine={false} />
-            <YAxis type="category" dataKey="key" width={100} tick={{ fontSize: 11, fill: "var(--color-muted-foreground)" }} axisLine={false} tickLine={false} />
+            <XAxis type="number" unit="%" tick={{ fontSize: 11, fill: "var(--muted-foreground)" }} axisLine={false} tickLine={false} />
+            <YAxis type="category" dataKey="key" width={100} tick={{ fontSize: 11, fill: "var(--muted-foreground)" }} axisLine={false} tickLine={false} />
           </>
         ) : (
           <>
-            <XAxis dataKey="key" tick={{ fontSize: 11, fill: "var(--color-muted-foreground)" }} axisLine={false} tickLine={false} />
-            <YAxis unit="%" tick={{ fontSize: 11, fill: "var(--color-muted-foreground)" }} axisLine={false} tickLine={false} />
+            <XAxis dataKey="key" tick={{ fontSize: 11, fill: "var(--muted-foreground)" }} axisLine={false} tickLine={false} />
+            <YAxis unit="%" tick={{ fontSize: 11, fill: "var(--muted-foreground)" }} axisLine={false} tickLine={false} />
           </>
         )}
-        <Tooltip content={<RateTooltip />} cursor={{ fill: "var(--color-muted)" }} />
+        <Tooltip content={<RateTooltip />} cursor={{ fill: "var(--muted)" }} />
         <Bar dataKey="rate" radius={horizontal ? [0, 4, 4, 0] : [4, 4, 0, 0]} maxBarSize={36}>
           {data.map((g) => (
-            <Cell key={g.key} fill={baseline != null && g.rate >= baseline ? "var(--color-chart-1)" : "var(--color-chart-2)"} />
+            <Cell key={g.key} fill={baseline != null && g.rate >= baseline ? "var(--chart-1)" : "var(--chart-2)"} />
           ))}
         </Bar>
       </BarChart>

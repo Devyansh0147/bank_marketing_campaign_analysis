@@ -24,8 +24,8 @@ function Overview() {
   const months = monthGroups(dataset);
   const contact = byColumn(dataset, "contact");
   const pie = [
-    { name: "Subscribed", value: k.yes, fill: "var(--color-chart-1)" },
-    { name: "Not subscribed", value: k.total - k.yes, fill: "var(--color-chart-4)" },
+    { name: "Subscribed", value: k.yes, fill: "var(--chart-1)" },
+    { name: "Not subscribed", value: k.total - k.yes, fill: "var(--chart-4)" },
   ];
 
   return (
